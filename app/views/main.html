@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Friend Poker</title>
+	<!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+		<link rel="stylesheet" href="/static/css/style.css">
+
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+		<div class="gray-dark">
+			<nav class="navbar navbar-inverse navbar-fixed-top">
+		      <div class="container">
+		        <div class="navbar-header">
+		          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+		            <span class="sr-only">Toggle navigation</span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		          </button>
+		          <a class="navbar-brand" href="/">Friend Poke Project</a>
+		        </div>
+		        <div id="navbar" class="collapse navbar-collapse">
+		          <!-- <ul class="nav navbar-nav pull-right">
+		            <li class="active"><a href="/">Home</a></li>
+		            <li><a href="#about">About</a></li>
+		            <li><a href="#contact">Contact</a></li>
+		          </ul> -->
+		        </div><!--/.nav-collapse -->
+		      </div>
+		    </nav>
+
+			{{ session['success'] }}
+			{% with errors = get_flashed_messages() %}
+
+				<div class='container row messagebox'>
+					<div class='col-xs-10 col-xs-offset-6'>
+						<h1>Welcome!</h1>
+						<p class='lead'>This is an example of my "Black Belt" exam completed in <span class='pythonword'>Python</span>. At Coding Dojo, black belts are the highest honor given to students. After 4 weeks of learning a new language, students are given a randomized wireframe with a list of functionalities that must be included.</p>
+
+						<p class='lead'>The entire full stack project must be completed (minus CSS/styling) and deployed on Amazon Web Services within 4.5 hours. Black Belt is then awarded if the project has 95% functionality. </p>
+
+						<p class='lead'><i>Please login using the information below. You may also register a new user.</i></p>
+
+						<p class='lead loginInfo'> <span style='color:#17A7AA'>Email:</span> ninja@dojo.com <span style='color:#17A7AA'>Password:</span> 1234asdf</p>
+
+					</div>
+				</div>
+
+				<!-- Register form -->
+				<div class='row form-box'>
+				<div class='col-xs-3 col-xs-offset-3'>
+					<h3>Register</h3>
+					<form action='/register' method="post" class='form-horizontal'>
+						<div class="form-group form-group-sm">
+					    <label class="col-sm-3 control-label" for="nameInput">Name</label>
+					    <div class="col-sm-9">
+					      <input name='reg_name' class="form-control" type="text" id="nameInput">
+					    </div>
+							{% if errors[0] %}
+							<p class='pull-right'>{{ errors[0]['reg_name'] }}</p>
+							{% endif %}
+					  </div>
+						<div class="form-group form-group-sm">
+					    <label class="col-sm-3 control-label" for="aliasInput">Alias</label>
+					    <div class="col-sm-9">
+					      <input name='reg_alias' class="form-control" type="text" id="aliasInput">
+					    </div>
+							{% if errors[0] %}
+			        <p class='pull-right'>{{ errors[0]['reg_alias'] }}</p>
+			        {% endif %}
+					  </div>
+						<div class="form-group form-group-sm">
+					    <label class="col-sm-3 control-label" for="emailInput">Email</label>
+					    <div class="col-sm-9">
+					      <input name='reg_email' class="form-control" type="text" id="emailInput">
+					    </div>
+							{% if errors[0] %}
+			        <p class='pull-right'>{{ errors[0]['reg_email'] }}</p>
+			        {% endif %}
+					  </div>
+						<div class="form-group form-group-sm">
+					    <label class="col-sm-3 control-label" for="passwordInput">Password</label>
+					    <div class="col-sm-9">
+					      <input name='reg_password' class="form-control" type="password" id="passwordInput">
+					    </div>
+							{% if errors[0] %}
+			        <p class='pull-right'>{{ errors[0]['reg_password'] }}</p>
+			        {% endif %}
+					  </div>
+						<div class="form-group form-group-sm">
+					    <label class="col-sm-3 control-label" for="confirmInput">Confirm Password</label>
+					    <div class="col-sm-9">
+					      <input name='reg_confirm' class="form-control" type="password" id="confirmInput">
+					    </div>
+							{% if errors[0] %}
+			        <p class='pull-right'>{{ errors[0]['reg_confirm'] }}</p>
+			        {% endif %}
+					  </div>
+						<div class="form-group form-group-sm">
+					    <label class="col-sm-3 control-label" for="birthInput">Birthdate</label>
+					    <div class="col-sm-9">
+					      <input name='reg_dob' class="form-control" type="date" id="birthInput">
+					    </div>
+							{% if errors[0] %}
+			        <p class='pull-right'>{{ errors[0]['reg_dob'] }}</p>
+			        {% endif %}
+					  </div>
+						<input class="btn btn-info pull-right" type="submit" value="Register">
+					</form>
+
+				</div>
+				<!-- Login form -->
+				<div class='col-xs-3'>
+					<h3>Login</h3>
+					<form action='/login' method='POST' class='form-horizontal'>
+						<div class="form-group form-group-sm">
+					    <label class="col-sm-3 control-label" for="emailInput">Email</label>
+					    <div class="col-xs-9">
+					      <input name='log_email' class="form-control" type="text" id="emailInput">
+					    </div>
+							{% if errors[0] %}
+			        <p class='pull-right'>{{ errors[0]['nouser'] }}</p>
+			        {% endif %}
+			        {% if errors[0] %}
+			        <p class='pull-right'>{{ errors[0]['log_email'] }}</p>
+			        {% endif %}
+					  </div>
+						<div class="form-group form-group-sm">
+					    <label class="col-xs-3 control-label" for="passwordInput">Password</label>
+					    <div class="col-xs-9">
+					      <input name='log_password' class="form-control" type="password" id="passwordInput">
+					    </div>
+							{% if errors[0] %}
+			        <p class='pull-right'>{{ errors[0]['passmatch'] }}</p>
+			        {% endif %}
+			        {% if errors[0] %}
+			        <p class='pull-right'>{{ errors[0]['log_password'] }}</p>
+			        {% endif %}
+					  </div>
+						<input class="btn btn-info pull-right" type="submit" value="Login">
+					</form>
+				</div>
+			</div>
+		{% endwith %}
+
+
+
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+</body>
+</html>
